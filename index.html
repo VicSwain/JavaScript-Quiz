@@ -1,21 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JavaScriptQuiz</title>
-    <link rel="stylesheet" href="./assets/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./assets/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Graduate&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Handlee&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <div id="start-screen">
-
-        <h1>Text to fill starter notes to click to start</h1>
-        <button id = "start-button">Click Here to Start</button>
+      <h1>Enjoy this quiz on JavaScript!</h1>
+      <button id="start-button">Click Here to Start</button>
     </div>
 
     <div id="quiz-screen" class="hide">
-        We exist
+      <h1>JavaScript Question</h1>
+      <button id="answer-a">mcA</button>
+      <button id="answer-b">mcB</button>
+      <button id="answer-c">mcC</button>
+      <button id="answer-d">mcD</button>
     </div>
-    <script src = "./assets/script.js"></script>
-</body>
+
+    <div id="show-result" class="hide">
+
+    </div>
+    <div id="score-screen">
+
+    </div>
+
+    <div id="high-score-screen">
+
+    </div>
+    <script src="./assets/script.js"></script>
+  </body>
 </html>
