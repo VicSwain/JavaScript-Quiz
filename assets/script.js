@@ -1,8 +1,17 @@
+// variable declariation for HTML Ids
 var startButton = document.getElementById("start-button");
+var startScreen = document.getElementById("start-screen");
+var quizScreen = document.getElementById("quiz-screen");
+var resultScreen = document.getElementById("show-result");
+var scoreScreen = document.getElementById("score-screen");
+var highScoreScreen = document.getElementById("high-score-screen");
+
+// variable declaration for answer list
 var answerA = document.getElementById("answer-a");
 var answerB = document.getElementById("answer-b");
 var answerC = document.getElementById("answer-c");
 var answerD = document.getElementById("answer-d");
+// object for bank of questions
 var questionBank = [
   {
     question: "Who invented JavaScript?",
@@ -54,18 +63,13 @@ var questionBank = [
 ];
 var index = 0;
 var timeLeft = 60;
-
-
-
-console.log(startButton);
 startButton.addEventListener("click", startQuiz);
 function startQuiz() {
   console.log("Quiz should start");
   // hide your start page
-  var startScreen = document.getElementById("start-screen");
   startScreen.style.display = "none";
-  var quizScreen = document.getElementById("quiz-screen");
   quizScreen.classList.remove("hide");
+
   //show your quiz page
   startTimer();
   showQuestion();
@@ -78,6 +82,7 @@ function startTimer() {
 function showQuestion() {
   var currentQuestion = questionBank[index];
   // empty the quiz screen
+  
   // create an h2 in the quiz screen
   // set the text
   // append it
