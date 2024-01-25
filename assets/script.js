@@ -122,6 +122,7 @@ function checkIfCorrectOrNot(event) {
     resultScreen.classList.remove("hide");
     results.classList.remove("hide");
     results.textContent = "Wrong!";
+    timeLeft = timeLeft - 5;
   } 
   console.log(selectedButton);
   console.log(correctAnswerCheck);
