@@ -76,26 +76,26 @@ window.addEventListener("click", function (event) {
 });
 
 function startQuiz() {
-  console.log("Quiz should start");
-  // hide your start page
   startScreen.style.display = "none";
   quizScreen.classList.remove("hide");
 
   //show your quiz page
   // startTimer();
+  startTimer();
   showQuestion();
+  
 }
 
 function startTimer() {
   var timerInterval = setInterval(function () {
     timeLeft--;
-    timer.textContent = timeLeft + " seconds remains for the quiz.";
+    timer.textContent = timeLeft + " seconds remaining for the quiz.";
     if (timeLeft === 0) {
       clearInterval(timerInterval);
     }
     console.log(timerInterval);
     console.log(timeLeft);
-  }, 6000);
+  }, 1000);
 
   console.log(timerInterval);
 }
@@ -106,7 +106,6 @@ function showQuestion() {
   answerB.textContent = currentQuestion.choices[1];
   answerC.textContent = currentQuestion.choices[2];
   answerD.textContent = currentQuestion.choices[3];
-  for (var i = 0; i < currentQuestion.question.length; i++);
   questionList.textContent = currentQuestion.question;
 
   // replace the current question
@@ -120,9 +119,9 @@ function checkIfCorrectOrNot(event) {
   // is it correct?
   var result = '';
   var currentQuestion = questionBank[index];
-  var correctAnswer = questionBank.correctAnswer[index];
+  var correctAnswercheck = questionBank.correctAnswer[index];
   var selectedButton = event.target;
-  if (selectedButton === correctAnswer) {
+  if (selectedButton === correctAnswercheck) {
     resultScreen.classList.remove("hide");
     results.classList.remove("hide");
     results.textContent = "Correct!"
@@ -132,12 +131,13 @@ function checkIfCorrectOrNot(event) {
     results.textContent = "Wrong!";
   }
   console.log(selectedButton);
+  console.log(correctAnswercheck);
 
 }
 
 
 
-  console.log(correctAnswer);
+  console.log(correctAnswercheck);
 
   // if (questionBank[index] <= 5) {
   //   index++;
