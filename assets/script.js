@@ -131,7 +131,7 @@ function checkIfCorrectOrNot(event) {
   var selectedButton = event.target;
   console.log(selectedButton);
 // considering increment of the question index by one and call show question
-  // check if right or wrong
+// check if right or wrong
   //if wrong, timeLeft = timeLeft - 10
 
   //do I have any questions left
