@@ -127,18 +127,5 @@ function checkIfCorrectOrNot(event) {
     results.textContent = "Wrong!";
   }
   console.log(selectedButton);
-  console.log(correctAnswer);
 
-  // if (questionBank[index] <= 5) {
-  //   index++;
-  //   correctAnswer =
-  // }
-  // considering increment of the question index by one and call show question
-  // check if right or wrong
-  //if wrong, timeLeft = timeLeft - 10
-
-  //do I have any questions left
-  //if I do, index ++
-  // showQuestion(0)
-  //else { endQuiz()}
 }
