@@ -8,6 +8,7 @@ var scoreScreen = document.getElementById("score-screen");
 var highScoreScreen = document.getElementById("high-score-screen");
 var questionList = document.getElementById("question");
 var timer = document.getElementById("time");
+var total = document.getElementById("total");
 var timeLeft = 60;
 var index = 0;
 var score = 0;
@@ -106,18 +107,17 @@ function showQuestion() {
 }
 
 function checkIfCorrectOrNot(event) {
-  // is it correct?
   var result = '';
   var currentQuestion = questionBank[index].question;
   var correctAnswerCheck = questionBank[index].correctAnswer;
-  var selectedButton = event.target.innerHTML; //
-  console.log(selectedButton);
-  console.log(correctAnswerCheck);
+  var selectedButton = event.target.innerHTML; 
+
   if (selectedButton == correctAnswerCheck) {
     resultScreen.classList.remove("hide");
     results.classList.remove("hide");
     results.textContent = "Correct!"
     score++;
+    total.textContent = score + " question(s) answered correctly";
   } else {
     resultScreen.classList.remove("hide");
     results.classList.remove("hide");
@@ -131,6 +131,7 @@ function checkIfCorrectOrNot(event) {
   showQuestion();
   
 }
+
 
 
 
