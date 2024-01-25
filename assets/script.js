@@ -71,7 +71,6 @@ var questionBank = [
 startButton.addEventListener("click", startQuiz);
 window.addEventListener("click", function (event) {
   if (event.target.id.startsWith("answer")) {
-    console.log(event.target.id);
     checkIfCorrectOrNot(event);
   }
 });
@@ -104,12 +103,6 @@ function showQuestion() {
   answerC.textContent = currentQuestion.choices[2];
   answerD.textContent = currentQuestion.choices[3];
   questionList.textContent = currentQuestion.question;
-
-  // replace the current question
-  // replace the possible answers
-
-  // create button
-  //append it
 }
 
 function checkIfCorrectOrNot(event) {
@@ -117,34 +110,33 @@ function checkIfCorrectOrNot(event) {
   var result = '';
   var currentQuestion = questionBank[index].question;
   var correctAnswerCheck = questionBank[index].correctAnswer;
-  var selectedButton = event.target;
-  if (selectedButton === correctAnswerCheck) {
+  var selectedButton = event.target.innerHTML; //
+  console.log(selectedButton);
+  console.log(correctAnswerCheck);
+  if (selectedButton == correctAnswerCheck) {
     resultScreen.classList.remove("hide");
     results.classList.remove("hide");
     results.textContent = "Correct!"
+    score++;
   } else {
     resultScreen.classList.remove("hide");
     results.classList.remove("hide");
     results.textContent = "Wrong!";
-  }
+  } 
   console.log(selectedButton);
   console.log(correctAnswerCheck);
-  index++;
   console.log(index);
-  console.log(correctAnswerCheck);
+  console.log(result);
+  index++;
   showQuestion();
+  
 }
 
 
 
   
 
-  // if (questionBank[index] <= 5) {
-  //   index++;
-  //   correctAnswer =
-  // }
-  // considering increment of the question index by one and call show question
-  // check if right or wrong
+  
 
 // considering increment of the question index by one and call show question
 // check if right or wrong
