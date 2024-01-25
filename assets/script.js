@@ -5,12 +5,17 @@ var quizScreen = document.getElementById("quiz-screen");
 var resultScreen = document.getElementById("show-result");
 var scoreScreen = document.getElementById("score-screen");
 var highScoreScreen = document.getElementById("high-score-screen");
+var questionList = document.getElementById("question");
 
 // variable declaration for answer list
 var answerA = document.getElementById("answer-a");
 var answerB = document.getElementById("answer-b");
 var answerC = document.getElementById("answer-c");
 var answerD = document.getElementById("answer-d");
+// index for iteration
+var index = 0;
+// time clock for countdown
+var timeLeft = 60;
 // object for bank of questions
 var questionBank = [
   {
@@ -61,9 +66,19 @@ var questionBank = [
     choices: ["const", "var", "let", "constant"],
   },
 ];
-var index = 0;
-var timeLeft = 60;
+
 startButton.addEventListener("click", startQuiz);
+window.addEventListener("click", function (event) {
+if (event.target.id.startsWith("answer")) {
+  console.log(event.target.id);
+
+}
+
+
+
+
+})
+
 function startQuiz() {
   console.log("Quiz should start");
   // hide your start page
@@ -71,31 +86,42 @@ function startQuiz() {
   quizScreen.classList.remove("hide");
 
   //show your quiz page
-  startTimer();
+  // startTimer();
   showQuestion();
 }
 
 function startTimer() {
+  var timerInterval = setInterval(function() {
+    timeLeft--;
+    console.log(timerInterval);
+
+  })
+
   console.log("timer goes here");
 }
 
 function showQuestion() {
   var currentQuestion = questionBank[index];
-  // empty the quiz screen
+  answerA.textContent = currentQuestion.choices[0];
+  answerB.textContent = currentQuestion.choices[1];
+  answerC.textContent = currentQuestion.choices[2];
+  answerD.textContent = currentQuestion.choices[3];
+ questionList.textContent = currentQuestion.question[index];
+ console.log(questionList.textContent);
+
+
   
+
+  // replace the current question
+  // replace the possible answers
   // create an h2 in the quiz screen
-  // set the text
-  // append it
-  //for loop thorugh the choices array
+  
+  
+  
   // create button
   //append it
-  //add event listener to the button
-  // for (let i = 0; i < choices.length; i++) {
-  //     const answerButton = document.createElement("button")
-  //     answerButton. innerHTML = choices[i]
-  //      answerButton.addEventListener('click', checkIfCorrectOrNot)
-
-  // }
+  console.log(currentQuestion);
+  
 }
 
 function checkIfCorrectOrNot(event) {
@@ -104,7 +130,7 @@ function checkIfCorrectOrNot(event) {
   var correctAnswer = currentQuestion.correctAnswer;
   var selectedButton = event.target;
   console.log(selectedButton);
-
+// considering increment of the question index by one and call show question
   // check if right or wrong
   //if wrong, timeLeft = timeLeft - 10
 
