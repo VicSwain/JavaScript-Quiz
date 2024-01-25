@@ -7,16 +7,16 @@ var results = document.getElementById("result");
 var scoreScreen = document.getElementById("score-screen");
 var highScoreScreen = document.getElementById("high-score-screen");
 var questionList = document.getElementById("question");
-console.log(results);
+var timer = document.getElementById("time");
+var timeLeft = 60;
+var index = 0;
+var score = 0;
 // variable declaration for answer list
 var answerA = document.getElementById("answer-a");
 var answerB = document.getElementById("answer-b");
 var answerC = document.getElementById("answer-c");
 var answerD = document.getElementById("answer-d");
-// index for iteration
-var index = 0;
-// time clock for countdown
-var timeLeft = 60;
+
 // object for bank of questions
 var questionBank = [
   {
@@ -89,10 +89,15 @@ function startQuiz() {
 function startTimer() {
   var timerInterval = setInterval(function () {
     timeLeft--;
+    timer.textContent = timeLeft + " seconds remains for the quiz.";
+    if (timeLeft === 0) {
+      clearInterval(timerInterval);
+    }
     console.log(timerInterval);
-  });
+    console.log(timeLeft);
+  }, 6000);
 
-  console.log("timer goes here");
+  console.log(timerInterval);
 }
 
 function showQuestion() {
@@ -115,7 +120,7 @@ function checkIfCorrectOrNot(event) {
   // is it correct?
   var result = '';
   var currentQuestion = questionBank[index];
-  var correctAnswer = questionBank.correctAnswer;
+  var correctAnswer = questionBank.correctAnswer[index];
   var selectedButton = event.target;
   if (selectedButton === correctAnswer) {
     resultScreen.classList.remove("hide");
@@ -129,3 +134,24 @@ function checkIfCorrectOrNot(event) {
   console.log(selectedButton);
 
 }
+
+
+
+  console.log(correctAnswer);
+
+  // if (questionBank[index] <= 5) {
+  //   index++;
+  //   correctAnswer =
+  // }
+  // considering increment of the question index by one and call show question
+  // check if right or wrong
+
+// considering increment of the question index by one and call show question
+// check if right or wrong
+
+  //if wrong, timeLeft = timeLeft - 10
+
+  //do I have any questions left
+  //if I do, index ++
+  // showQuestion(0)
+  //else { endQuiz()}
