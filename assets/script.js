@@ -9,6 +9,8 @@ var highScoreScreen = document.getElementById("high-score-screen");
 var questionList = document.getElementById("question");
 var timer = document.getElementById("time");
 var total = document.getElementById("total");
+var userName = document.getElementById("user-name");
+
 var timeLeft = 60;
 var index = 0;
 var score = 0;
@@ -79,12 +81,8 @@ window.addEventListener("click", function (event) {
 function startQuiz() {
   startScreen.style.display = "none";
   quizScreen.classList.remove("hide");
-
-  //show your quiz page
-  // startTimer();
   startTimer();
   showQuestion();
-  
 }
 
 function startTimer() {
@@ -92,8 +90,9 @@ function startTimer() {
     timeLeft--;
     timer.textContent = timeLeft + " seconds remaining for the quiz.";
     if (timeLeft === 0) {
+      endGame();
       clearInterval(timerInterval);
-    } 
+    }
   }, 1000);
 }
 
@@ -107,45 +106,47 @@ function showQuestion() {
 }
 
 function checkIfCorrectOrNot(event) {
-  var result = '';
+  var result = "";
   var currentQuestion = questionBank[index].question;
   var correctAnswerCheck = questionBank[index].correctAnswer;
-  var selectedButton = event.target.innerHTML; 
+  var selectedButton = event.target.innerHTML;
 
   if (selectedButton == correctAnswerCheck) {
     resultScreen.classList.remove("hide");
     results.classList.remove("hide");
-    results.textContent = "Correct!"
-    score++;
-    total.textContent = score + " question(s) answered correctly";
+    results.textContent = "Correct!";
+    score = score + 5;
+    total.textContent = "Your current score is " + score;
   } else {
     resultScreen.classList.remove("hide");
     results.classList.remove("hide");
     results.textContent = "Wrong!";
     timeLeft = timeLeft - 5;
-  } 
-  console.log(selectedButton);
-  console.log(correctAnswerCheck);
-  console.log(index);
-  console.log(result);
+  }
   index++;
   showQuestion();
-  
+  if (index >= 4) {
+    endGame();
+  }
 }
 
+function endGame() {
+  quizScreen.style.display = "none";
+  highScoreScreen.classList.remove("hide");
+  userName.classList.remove("hide")
+  resultScreen.classList.add("hide");
 
 
 
-  
 
-  
+}
 
 // considering increment of the question index by one and call show question
 // check if right or wrong
 
-  //if wrong, timeLeft = timeLeft - 10
+//if wrong, timeLeft = timeLeft - 10
 
-  //do I have any questions left
-  //if I do, index ++
-  // showQuestion(0)
-  //else { endQuiz()}
+//do I have any questions left
+//if I do, index ++
+// showQuestion(0)
+//else { endQuiz()}
