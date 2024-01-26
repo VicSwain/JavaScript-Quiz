@@ -10,7 +10,9 @@ var questionList = document.getElementById("question");
 var timer = document.getElementById("time");
 var total = document.getElementById("total");
 var userName = document.getElementById("user-name");
-
+var submitName = document.getElementById("submit-name")
+var nameLabel = document.getElementById("entername");
+var timerInterval = null; 
 var timeLeft = 60;
 var index = 0;
 var score = 0;
@@ -86,10 +88,10 @@ function startQuiz() {
 }
 
 function startTimer() {
-  var timerInterval = setInterval(function () {
+    timerInterval = setInterval(function () {
     timeLeft--;
     timer.textContent = timeLeft + " seconds remaining for the quiz.";
-    if (timeLeft === 0) {
+    if (timeLeft <= 0) {
       endGame();
       clearInterval(timerInterval);
     }
@@ -106,8 +108,6 @@ function showQuestion() {
 }
 
 function checkIfCorrectOrNot(event) {
-  var result = "";
-  var currentQuestion = questionBank[index].question;
   var correctAnswerCheck = questionBank[index].correctAnswer;
   var selectedButton = event.target.innerHTML;
 
@@ -131,22 +131,18 @@ function checkIfCorrectOrNot(event) {
 }
 
 function endGame() {
+  clearInterval(timerInterval);
   quizScreen.style.display = "none";
   highScoreScreen.classList.remove("hide");
   userName.classList.remove("hide")
   resultScreen.classList.add("hide");
+  nameLabel.classList.remove("hide");
+  console.log(userName);
+  console.log(submitName);
 
 
 
 
 }
 
-// considering increment of the question index by one and call show question
-// check if right or wrong
 
-//if wrong, timeLeft = timeLeft - 10
-
-//do I have any questions left
-//if I do, index ++
-// showQuestion(0)
-//else { endQuiz()}
