@@ -10,7 +10,7 @@ var questionList = document.getElementById("question");
 var timer = document.getElementById("time");
 var total = document.getElementById("total");
 var userName = document.getElementById("user-name");
-var submitName = document.getElementById("submit-name")
+var submitName = document.querySelectorAll(".submit-name")
 var nameLabel = document.getElementById("entername");
 var timerInterval = null; 
 var timeLeft = 60;
@@ -21,6 +21,10 @@ var answerA = document.getElementById("answer-a");
 var answerB = document.getElementById("answer-b");
 var answerC = document.getElementById("answer-c");
 var answerD = document.getElementById("answer-d");
+var highScore1 = document.getElementById("high-score1");
+var highScore2 = document.getElementById("high-score2");
+var highScore3 = document.getElementById("high-score3");
+console.log(submitName);
 
 // object for bank of questions
 var questionBank = [
@@ -133,12 +137,14 @@ function checkIfCorrectOrNot(event) {
 function endGame() {
   clearInterval(timerInterval);
   quizScreen.style.display = "none";
-  highScoreScreen.classList.remove("hide");
-  userName.classList.remove("hide")
+  // highScoreScreen.classList.remove("hide");
+  // userName.classList.remove("hide")
   resultScreen.classList.add("hide");
-  nameLabel.classList.remove("hide");
-  console.log(userName);
-  console.log(submitName);
+  // nameLabel.classList.remove("hide");
+  highScore1.classList.remove("hide");
+  highScore2.classList.remove("hide");
+  highScore3.classList.remove("hide");
+  document.querySelector(".form-div").classList.remove("hide");
 
 
 
