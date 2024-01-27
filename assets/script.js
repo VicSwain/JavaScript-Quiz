@@ -155,15 +155,17 @@ function endGame() {
 
     localStorage.setItem("username", nameInput);
     console.log(nameInput);
-    console.log(localStorage);
-  }
+    }
+    renderScores();
   })
+  
 }
 
 function renderScores() {
   var userNameInput = localStorage.getItem("username");
-  userNameInput.textContent = nameInput;
-  console.log(userNameInput.children[1]);
+  highScore1.textContent = userNameInput;
+  console.log(userNameInput);
+  
 
 }
 
