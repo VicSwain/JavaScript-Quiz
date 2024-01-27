@@ -1,85 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JavaScriptQuiz</title>
-    <link rel="stylesheet" href="./assets/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Graduate&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Handlee&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div id="start-screen">
-      <h1>Enjoy this quiz on JavaScript!</h1>
-      <button id="start-button">Click Here to Start</button>
-    </div>
-    <h2
-      id="time"
-      style="text-align: right; font-size: medium; color: black"
-    ></h2>
 
-    <div id="quiz-screen" class="hide">
-      <h1 id="question">JavaScript Question</h1>
-      <button id="answer-a">mcA</button>
-      <button id="answer-b">mcB</button>
-      <button id="answer-c">mcC</button>
-      <button id="answer-d">mcD</button>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JavaScriptQuiz</title>
+  <link rel="stylesheet" href="./assets/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Graduate&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet" />
+</head>
 
-    <div id="show-result" class="hide">
-      <h2 id="result" class="hide"></h2>
-    </div>
-    <div id="score-screen">
-      <h2 style="text-align: right; font-size: medium; color: black">Score</h2>
-      <h2 style="text-align: right; font-size: medium; color: black">
-        5 points for correct answers, and 5 second penalty for incorrect
-        answers!
-      </h2>
-      <h2
-        id="total"
-        style="text-align: right; font-size: medium; color: black"
-      ></h2>
-    </div>
+<body>
+  <div id="start-screen">
+    <h1>Enjoy this quiz on JavaScript!</h1>
+    <button id="start-button">Click Here to Start</button>
+  </div>
+  <h2 id="time" style="text-align: right; font-size: medium; color: black"></h2>
 
-    <div class="submit-name form-div hide">
+  <div id="quiz-screen" class="hide">
+    <h1 id="question">JavaScript Question</h1>
+    <button id="answer-a">mcA</button>
+    <button id="answer-b">mcB</button>
+    <button id="answer-c">mcC</button>
+    <button id="answer-d">mcD</button>
+  </div>
+
+  <div id="show-result" class="hide">
+    <h2 id="result" class="hide"></h2>
+  </div>
+  <div id="score-screen">
+    <h2 style="text-align: right; font-size: medium; color: black">Score</h2>
+    <h2 style="text-align: right; font-size: medium; color: black">
+      5 points for correct answers, and 5 second penalty for incorrect
+      answers!
+    </h2>
+    <h2 id="total" style="text-align: right; font-size: medium; color: black"></h2>
+  </div>
+
+  <div class="submit-name form-div hide">
     <form method=" POST">
-      <button class="submit-name button">Submit Name</button> 
+      <button class="submit-name button" style="text-align: center;">Submit Name</button>
       <!-- <label for ="name" class="submit-name">Enter Name</label> -->
-      <input type="text" id="user-name" style="text-align: center; color: black"/>
-      
+      <input type="text" id="user-name" style="text-align: center; color: black" />
+      <div id="test-results" style="text-align: center; color: black"></div>
+      <button id="high-score-button">See High Scores</button>
     </form>
-    </div>
-    <div
-      id="high-score1"
-      class="hide"
-      style="text-align: center; color: black; margin-top: 10px"
-    >
-      High Score 1
-    </div>
-    <div
-      id="high-score2"
-      class="hide"
-      style="text-align: center; color: black; margin-top: 10px"
-    >
-      High Score 2
-    </div>
-    <div
-      id="high-score3"
-      class="hide"
-      style="text-align: center; color: black; margin-top: 10px"
-    >
-      High Score 3
-    </div>
-    <script src="./assets/script.js"></script>
-  </body>
+    <div id="high-score-container" class="hide">
+  </div>
+  <div id="high-score1" class="hide" style="text-align: center; color: black; margin-top: 10px">
+    High Score 1
+  </div>
+  <div id="high-score2" class="hide" style="text-align: center; color: black; margin-top: 10px">
+    High Score 2
+  </div>
+  <div id="high-score3" class="hide" style="text-align: center; color: black; margin-top: 10px">
+    High Score 3
+  </div>
+</div>
+  <script src="./assets/script.js"></script>
+</body>
+
 </html>
