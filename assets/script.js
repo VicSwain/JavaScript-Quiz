@@ -25,7 +25,6 @@ var answerD = document.getElementById("answer-d");
 var highScore1 = document.getElementById("high-score1");
 var highScore2 = document.getElementById("high-score2");
 var highScore3 = document.getElementById("high-score3");
-console.log(submitName);
 
 // object for bank of questions
 var questionBank = [
@@ -159,11 +158,12 @@ function endGame() {
     console.log(localStorage);
   }
   })
-  
+}
 
-
-
-
+function renderScores() {
+  var userNameInput = localStorage.getItem("username");
+  userNameInput.textContent = nameInput;
+  console.log(userNameInput.children[1]);
 
 }
 
