@@ -5,7 +5,7 @@ var quizScreen = document.getElementById("quiz-screen");
 var resultScreen = document.getElementById("show-result");
 var results = document.getElementById("result");
 var scoreScreen = document.getElementById("score-screen");
-var highScoreScreen = document.getElementById("high-score-screen");
+var highScoreScreen = document.getElementById("high-score-container");
 var questionList = document.getElementById("question");
 var timer = document.getElementById("time");
 var total = document.getElementById("total");
@@ -64,7 +64,7 @@ var questionBank = [
   },
   {
     question:
-      "Which of the following methods can be used to display data in some for using JavaScript?",
+      "Which of the following methods can be used to display data in some form using JavaScript?",
     correctAnswer: "All of the above",
     choices: [
       "document.write()",
@@ -165,6 +165,7 @@ function endGame() {
   })
   highScoreButton.addEventListener("click", function(event) {
     event.preventDefault();
+    highScoreDisplay();
   })
 }
 
@@ -174,6 +175,14 @@ function renderScores() {
   testResults.textContent = userNameInput + ", your final score is " + displayScore;
   console.log(userNameInput);
   console.log(displayScore);
+
+}
+
+function highScoreDisplay() {
+  highScoreScreen.classList.remove("hide");
+  highScore1.textContent = localStorage.getItem("userscore");
+
+
 
 }
 
