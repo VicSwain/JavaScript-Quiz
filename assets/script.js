@@ -17,6 +17,7 @@ var timeLeft = 60;
 var index = 0;
 var score = 0;
 var submitButton = document.querySelector(".button"); 
+var highScoreButton = document.getElementById("high-score-button");
 // variable declaration for answer list
 var answerA = document.getElementById("answer-a");
 var answerB = document.getElementById("answer-b");
@@ -162,7 +163,9 @@ function endGame() {
     }
     renderScores();
   })
-  
+  highScoreButton.addEventListener("click", function(event) {
+    event.preventDefault();
+  })
 }
 
 function renderScores() {
