@@ -25,6 +25,7 @@ var answerD = document.getElementById("answer-d");
 var highScore1 = document.getElementById("high-score1");
 var highScore2 = document.getElementById("high-score2");
 var highScore3 = document.getElementById("high-score3");
+var testResults = document.getElementById("test-results");
 console.log(localStorage);
 
 // object for bank of questions
@@ -143,9 +144,9 @@ function endGame() {
   // userName.classList.remove("hide")
   resultScreen.classList.add("hide");
   // nameLabel.classList.remove("hide");
-  highScore1.classList.remove("hide");
-  highScore2.classList.remove("hide");
-  highScore3.classList.remove("hide");
+  // highScore1.classList.remove("hide");
+  // highScore2.classList.remove("hide");
+  // highScore3.classList.remove("hide");
   document.querySelector(".form-div").classList.remove("hide");
   submitButton.addEventListener("click", function(event) {
   event.preventDefault();
@@ -167,8 +168,7 @@ function endGame() {
 function renderScores() {
   var userNameInput = localStorage.getItem("username");
   var displayScore = localStorage.getItem("userscore");
-  highScore1.textContent = userNameInput;
-  highScore2.textContent = "Your final score is " + displayScore;
+  testResults.textContent = userNameInput + ", your final score is " + displayScore;
   console.log(userNameInput);
   console.log(displayScore);
 
