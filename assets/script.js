@@ -138,7 +138,6 @@ function checkIfCorrectOrNot(event) {
 }
 
 function endGame() {
-  
   clearInterval(timerInterval);
   quizScreen.style.display = "none";
   resultScreen.classList.add("hide");
@@ -160,13 +159,11 @@ function endGame() {
     event.preventDefault();
     highScoreDisplay();
   })
-  playAgainButton.addEventListener("click", function(event) {
-    event.preventDefault();
-    startQuiz();
-  })
+
 }
 
 function renderScores() {
+  
   var userNameInput = localStorage.getItem("username");
   var displayScore = localStorage.getItem("userscore");
   testResults.textContent = userNameInput + ", your final score is " + displayScore;
@@ -181,6 +178,10 @@ function highScoreDisplay() {
   highScore2.classList.remove("hide");
   highScore3.classList.remove("hide");
   highScore1.textContent = localStorage.getItem("username") + localStorage.getItem("userscore");
+  playAgainButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    document.location.reload();
+  })
 
 
 
