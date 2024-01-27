@@ -18,6 +18,7 @@ var index = 0;
 var score = 0;
 var submitButton = document.querySelector(".button"); 
 var highScoreButton = document.getElementById("high-score-button");
+var playAgainButton = document.getElementById("play-again-button");
 // variable declaration for answer list
 var answerA = document.getElementById("answer-a");
 var answerB = document.getElementById("answer-b");
@@ -27,7 +28,6 @@ var highScore1 = document.getElementById("high-score1");
 var highScore2 = document.getElementById("high-score2");
 var highScore3 = document.getElementById("high-score3");
 var testResults = document.getElementById("test-results");
-console.log(localStorage);
 
 // object for bank of questions
 var questionBank = [
@@ -141,13 +141,7 @@ function endGame() {
   
   clearInterval(timerInterval);
   quizScreen.style.display = "none";
-  // highScoreScreen.classList.remove("hide");
-  // userName.classList.remove("hide")
   resultScreen.classList.add("hide");
-  // nameLabel.classList.remove("hide");
-  // highScore1.classList.remove("hide");
-  // highScore2.classList.remove("hide");
-  // highScore3.classList.remove("hide");
   document.querySelector(".form-div").classList.remove("hide");
   submitButton.addEventListener("click", function(event) {
   event.preventDefault();
@@ -158,7 +152,6 @@ function endGame() {
     alert("success", "Registered successfully");
 
     localStorage.setItem("username", nameInput);
-    console.log(nameInput);
     var userScore = localStorage.setItem("userscore", score);
     }
     renderScores();
@@ -167,20 +160,27 @@ function endGame() {
     event.preventDefault();
     highScoreDisplay();
   })
+  playAgainButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    startQuiz();
+  })
 }
 
 function renderScores() {
   var userNameInput = localStorage.getItem("username");
   var displayScore = localStorage.getItem("userscore");
   testResults.textContent = userNameInput + ", your final score is " + displayScore;
-  console.log(userNameInput);
-  console.log(displayScore);
+  playAgainButton.classList.remove("hide");
+  
 
 }
 
 function highScoreDisplay() {
   highScoreScreen.classList.remove("hide");
-  highScore1.textContent = localStorage.getItem("userscore");
+  highScore1.classList.remove("hide");
+  highScore2.classList.remove("hide");
+  highScore3.classList.remove("hide");
+  highScore1.textContent = localStorage.getItem("username") + localStorage.getItem("userscore");
 
 
 
