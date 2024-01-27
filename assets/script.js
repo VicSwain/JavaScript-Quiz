@@ -16,7 +16,7 @@ var timerInterval = null;
 var timeLeft = 60;
 var index = 0;
 var score = 0;
-var submitButton = document.querySelector(".button"); //
+var submitButton = document.querySelector(".button"); 
 // variable declaration for answer list
 var answerA = document.getElementById("answer-a");
 var answerB = document.getElementById("answer-b");
@@ -25,6 +25,7 @@ var answerD = document.getElementById("answer-d");
 var highScore1 = document.getElementById("high-score1");
 var highScore2 = document.getElementById("high-score2");
 var highScore3 = document.getElementById("high-score3");
+console.log(localStorage);
 
 // object for bank of questions
 var questionBank = [
@@ -135,6 +136,7 @@ function checkIfCorrectOrNot(event) {
 }
 
 function endGame() {
+  
   clearInterval(timerInterval);
   quizScreen.style.display = "none";
   // highScoreScreen.classList.remove("hide");
@@ -155,6 +157,7 @@ function endGame() {
 
     localStorage.setItem("username", nameInput);
     console.log(nameInput);
+    var userScore = localStorage.setItem("userscore", score);
     }
     renderScores();
   })
@@ -163,9 +166,11 @@ function endGame() {
 
 function renderScores() {
   var userNameInput = localStorage.getItem("username");
+  var displayScore = localStorage.getItem("userscore");
   highScore1.textContent = userNameInput;
+  highScore2.textContent = "Your final score is " + displayScore;
   console.log(userNameInput);
-  
+  console.log(displayScore);
 
 }
 
