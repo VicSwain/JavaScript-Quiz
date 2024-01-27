@@ -16,6 +16,7 @@ var timerInterval = null;
 var timeLeft = 60;
 var index = 0;
 var score = 0;
+var submitButton = document.querySelector(".button"); //
 // variable declaration for answer list
 var answerA = document.getElementById("answer-a");
 var answerB = document.getElementById("answer-b");
@@ -145,6 +146,21 @@ function endGame() {
   highScore2.classList.remove("hide");
   highScore3.classList.remove("hide");
   document.querySelector(".form-div").classList.remove("hide");
+  submitButton.addEventListener("click", function(event) {
+  event.preventDefault();
+  var nameInput = userName.value;
+  if (nameInput === "") {
+    prompt("error", "Name cannot be blank");
+   } else {
+    alert("success", "Registered successfully");
+
+    localStorage.setItem("username", nameInput);
+    console.log(nameInput);
+    console.log(localStorage);
+  }
+  })
+  
+
 
 
 
