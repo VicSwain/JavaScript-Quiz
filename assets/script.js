@@ -184,9 +184,10 @@ function highScoreDisplay() {
     testScore: displayScore
   };
   console.log(finalResults);
-  var finalResultsJson = JSON.parse(localStorage.setItem(finalResults));  
-  highScore1.textContent = finalResultsJson;
+  var finalResultsJson = JSON.parse(localStorage.getItem(finalResults));  
   console.log(finalResultsJson);
+  // highScore1.textContent = finalResultsJson;
+  // console.log(finalResultsJson);
   playAgainButton.addEventListener("click", function(event) {
     event.preventDefault();
     document.location.reload();
