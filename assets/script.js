@@ -15,22 +15,22 @@ var nameLabel = document.getElementById("entername");
 var submitButton = document.querySelector(".button");
 var highScoreButton = document.getElementById("high-score-button");
 var playAgainButton = document.getElementById("play-again-button");
-// variable declariation for timer
-var timerInterval = null;
-var timeLeft = 60;
-var index = 0;
-var score = 0;
-
-// variable declaration for answer list
 var answerA = document.getElementById("answer-a");
 var answerB = document.getElementById("answer-b");
 var answerC = document.getElementById("answer-c");
 var answerD = document.getElementById("answer-d");
 var testResults = document.getElementById("test-results");
+// variable declariation for timer
+var timerInterval = null;
+var timeLeft = 60;
+var index = 0;
+var score = 0;
+// variable declration to save scores
 var userNameInput = localStorage.getItem("username");
 var displayScore = localStorage.getItem("userscore");
 var finalResults = {};
 var finalResultsJson = "";
+
 
 // object for bank of questions
 var questionBank = [
@@ -82,21 +82,21 @@ var questionBank = [
     choices: ["const", "var", "let", "constant"],
   },
 ];
-
+// event listner to start the quiz and ensure that click is to trigger answer check
 startButton.addEventListener("click", startQuiz);
 window.addEventListener("click", function (event) {
   if (event.target.id.startsWith("answer")) {
     checkIfCorrectOrNot(event);
   }
 });
-
+// function to start the quiz
 function startQuiz() {
   startScreen.style.display = "none";
   quizScreen.classList.remove("hide");
   startTimer();
   showQuestion();
 }
-
+// function for timer 
 function startTimer() {
   timerInterval = setInterval(function () {
     timeLeft--;
@@ -107,7 +107,7 @@ function startTimer() {
     }
   }, 1000);
 }
-
+// function to display questions
 function showQuestion() {
   var currentQuestion = questionBank[index];
   answerA.textContent = currentQuestion.choices[0];
@@ -116,7 +116,7 @@ function showQuestion() {
   answerD.textContent = currentQuestion.choices[3];
   questionList.textContent = currentQuestion.question;
 }
-
+// function to determine if user answer is correct
 function checkIfCorrectOrNot(event) {
   var correctAnswerCheck = questionBank[index].correctAnswer;
   var selectedButton = event.target.innerHTML;
@@ -141,7 +141,7 @@ function checkIfCorrectOrNot(event) {
     endGame();
   }
 }
-
+// function to end game and prompt user to enter name
 function endGame() {
   clearInterval(timerInterval);
   quizScreen.style.display = "none";
@@ -169,7 +169,7 @@ function endGame() {
   });
 }
 
-  
+  // function to diplay the high list of high scores
   function showHighScoreScreen() {
     document.querySelector(".form-div").classList.add("hide");
     highScoreScreen.classList.remove("hide");
@@ -177,11 +177,14 @@ function endGame() {
     playAgainButton.addEventListener("click", function (event) {
       event.preventDefault();
       
+      startQuiz();
+      console.log(playAgainButton);
     });
+    
     loadScores();    
-    startQuiz();
+    
 }
-
+// function to load 
 function loadScores(){
   var savedScores = JSON.parse(localStorage.getItem("highscores"));
   if(savedScores.length === 0){

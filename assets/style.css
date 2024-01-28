@@ -15,7 +15,7 @@ button:hover {
   color: white;
   font-family: "Handlee", cursive;
 }
-
+/* class to hide elements until needed */
 .hide {
   display: none;  
 }
