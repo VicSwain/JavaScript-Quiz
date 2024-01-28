@@ -186,9 +186,10 @@ function highScoreDisplay() {
   };
   console.log(finalResults);
   localStorage.setItem("finalResults", JSON.stringify(finalResults));
-  finalResultsJson = localStorage.getItem(finalResults);  
+  console.log(localStorage);
+  finalResultsJson = localStorage.getItem("finalResults");  
   console.log(finalResultsJson);
-  // highScore1.textContent = finalResultsJson;
+  highScore1.textContent = finalResults.user + " " + finalResults.testScore;
   // console.log(finalResultsJson);
   playAgainButton.addEventListener("click", function(event) {
     event.preventDefault();
