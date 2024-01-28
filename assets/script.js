@@ -30,7 +30,7 @@ var highScore3 = document.getElementById("high-score3");
 var testResults = document.getElementById("test-results");
 var userNameInput = localStorage.getItem("username");
 var displayScore = localStorage.getItem("userscore");
-
+var finalResults = {};
 
 // object for bank of questions
 var questionBank = [
@@ -179,11 +179,12 @@ function highScoreDisplay() {
   highScore1.classList.remove("hide");
   highScore2.classList.remove("hide");
   highScore3.classList.remove("hide");
-  var finalResults = {
+  finalResults = {
     user: userNameInput,
     testScore: displayScore
-  }
-  var finalResultsJson = JSON.stringify(localStorage.getItem("finalResults"));  
+  };
+  console.log(finalResults);
+  var finalResultsJson = JSON.parse(localStorage.setItem(finalResults));  
   highScore1.textContent = finalResultsJson;
   console.log(finalResultsJson);
   playAgainButton.addEventListener("click", function(event) {
