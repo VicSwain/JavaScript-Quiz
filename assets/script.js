@@ -28,6 +28,8 @@ var highScore1 = document.getElementById("high-score1");
 var highScore2 = document.getElementById("high-score2");
 var highScore3 = document.getElementById("high-score3");
 var testResults = document.getElementById("test-results");
+var userNameInput = localStorage.getItem("username");
+var displayScore = localStorage.getItem("userscore");
 
 // object for bank of questions
 var questionBank = [
@@ -145,12 +147,12 @@ function endGame() {
   submitButton.addEventListener("click", function(event) {
   event.preventDefault();
   var nameInput = userName.value;
+  console.log(nameInput);
   if (nameInput === "") {
     alert("Error", "name cannot be blank");
    } else {
     localStorage.setItem("username", nameInput);
     localStorage.setItem("userscore", score);
-    console.log(localStorage);
     }
     renderScores();
   })
@@ -178,10 +180,10 @@ function highScoreDisplay() {
   highScore2.classList.remove("hide");
   highScore3.classList.remove("hide");
   highScore1.textContent = localStorage.getItem("username") + localStorage.getItem("userscore");
-  // var finalResults = {
-  //   user: nameInput.value.trim(),
-  //   testScore: displayScore.value
-  // }
+  var finalResults = {
+    user: userNameInput,
+    testScore: displayScore
+  }
   console.log(finalResults);
   playAgainButton.addEventListener("click", function(event) {
     event.preventDefault();
