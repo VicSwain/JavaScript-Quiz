@@ -1,4 +1,4 @@
-// variable declariation for HTML Ids
+// variable declariation for HTML elements
 var startButton = document.getElementById("start-button");
 var startScreen = document.getElementById("start-screen");
 var quizScreen = document.getElementById("quiz-screen");
@@ -12,13 +12,15 @@ var total = document.getElementById("total");
 var userName = document.getElementById("user-name");
 var submitName = document.querySelectorAll(".submit-name");
 var nameLabel = document.getElementById("entername");
+var submitButton = document.querySelector(".button");
+var highScoreButton = document.getElementById("high-score-button");
+var playAgainButton = document.getElementById("play-again-button");
+// variable declariation for timer
 var timerInterval = null;
 var timeLeft = 60;
 var index = 0;
 var score = 0;
-var submitButton = document.querySelector(".button");
-var highScoreButton = document.getElementById("high-score-button");
-var playAgainButton = document.getElementById("play-again-button");
+
 // variable declaration for answer list
 var answerA = document.getElementById("answer-a");
 var answerB = document.getElementById("answer-b");
@@ -132,7 +134,7 @@ function checkIfCorrectOrNot(event) {
     timeLeft = timeLeft - 5;
   }
   index++;
-  // maxIndex = 4
+  
   if (index < questionBank.length) {
     showQuestion();
   } else {
@@ -174,10 +176,10 @@ function endGame() {
     playAgainButton.classList.remove("hide");
     playAgainButton.addEventListener("click", function (event) {
       event.preventDefault();
-      document.location.reload();
+      
     });
-    loadScores()    
-  // console.log(finalResultsJson);
+    loadScores();    
+    startQuiz();
 }
 
 function loadScores(){
@@ -189,7 +191,6 @@ function loadScores(){
 
   for (let i = 0; i < savedScores.length; i++) {
     const element = savedScores[i];
-    console.log(element)
 
     // innerHTML allows you create elements, add class, and set text in an easy to read format with template literals
     highScoreScreen.innerHTML += `<div class="score-element">
@@ -208,7 +209,6 @@ function loadScores(){
 }
 
 function saveLocalStorage(newScore) {
-  console.log(newScore);
   var savedScores = JSON.parse(localStorage.getItem("highscores"));
   console.log(savedScores);
   // if(!savedScores) is checking is saved scores is falsy: https://www.freecodecamp.org/news/falsy-values-in-javascript/#:~:text=Description,)%2C%20and%20false%20of%20course.
@@ -220,38 +220,3 @@ function saveLocalStorage(newScore) {
   localStorage.setItem("highscores", JSON.stringify(savedScores));
 }
 
-
-// function sortHighScore() {
-//   if (score > scores[0].score) {
-//     scores[3] = scores[2];
-//     scores[2] = scores[1];
-//     scores[1] = scores[0];
-//     scores[0] = {initials, score};
-//     localStorage.setItem("userScore", JSON.stringify(scores))
-//     highscore()
-//   }
-//   else if (score > scores[1].score) {
-//     scores[3] = scores[2];
-//     scores[2] = scores[1];
-//     scores[1] = {initials, score};
-//     localStorage.setItem("userScore", JSON.stringify(scores))
-//     highscore()
-//   }
-//   else if (score > scores[2].score) {
-//     scores[3] = scores[2];
-//     scores[2] = {initials, score};
-//     localStorage.setItem("userScore", JSON.stringify(scores))
-//     highscore()
-//   }
-//   else if (score > scores[3].score) {
-//     scores[3] = {initials, score};
-//     localStorage.setItem("userScore", JSON.stringify(scores))
-//     highscore()
-//   }
-//   else {
-//     localStorage.setItem("userScore", JSON.stringify(scores))
-//     highscore()
-//   }
-// }, {once: true});
-
-// }
