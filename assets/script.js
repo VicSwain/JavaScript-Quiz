@@ -146,12 +146,11 @@ function endGame() {
   event.preventDefault();
   var nameInput = userName.value;
   if (nameInput === "") {
-    prompt("error", "Name cannot be blank");
+    alert("Error", "name cannot be blank");
    } else {
-    alert("success", "Registered successfully");
-
     localStorage.setItem("username", nameInput);
-    var userScore = localStorage.setItem("userscore", score);
+    localStorage.setItem("userscore", score);
+    console.log(localStorage);
     }
     renderScores();
   })
@@ -173,11 +172,17 @@ function renderScores() {
 }
 
 function highScoreDisplay() {
+  document.querySelector(".form-div").classList.add("hide");
   highScoreScreen.classList.remove("hide");
   highScore1.classList.remove("hide");
   highScore2.classList.remove("hide");
   highScore3.classList.remove("hide");
   highScore1.textContent = localStorage.getItem("username") + localStorage.getItem("userscore");
+  // var finalResults = {
+  //   user: nameInput.value.trim(),
+  //   testScore: displayScore.value
+  // }
+  console.log(finalResults);
   playAgainButton.addEventListener("click", function(event) {
     event.preventDefault();
     document.location.reload();
