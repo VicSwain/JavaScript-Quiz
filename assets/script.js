@@ -31,6 +31,7 @@ var testResults = document.getElementById("test-results");
 var userNameInput = localStorage.getItem("username");
 var displayScore = localStorage.getItem("userscore");
 var finalResults = {};
+var finalResultsJson = '';
 
 // object for bank of questions
 var questionBank = [
@@ -184,7 +185,8 @@ function highScoreDisplay() {
     testScore: displayScore
   };
   console.log(finalResults);
-  var finalResultsJson = JSON.parse(localStorage.getItem(finalResults));  
+  localStorage.setItem("finalResults", JSON.stringify(finalResults));
+  finalResultsJson = localStorage.getItem(finalResults);  
   console.log(finalResultsJson);
   // highScore1.textContent = finalResultsJson;
   // console.log(finalResultsJson);
