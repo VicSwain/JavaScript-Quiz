@@ -19,3 +19,7 @@ button:hover {
 .hide {
   display: none;  
 }
+
+.score-element{
+  text-align: center; color: black; margin-top: 10px
+}

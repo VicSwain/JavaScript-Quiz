@@ -10,13 +10,13 @@ var questionList = document.getElementById("question");
 var timer = document.getElementById("time");
 var total = document.getElementById("total");
 var userName = document.getElementById("user-name");
-var submitName = document.querySelectorAll(".submit-name")
+var submitName = document.querySelectorAll(".submit-name");
 var nameLabel = document.getElementById("entername");
-var timerInterval = null; 
+var timerInterval = null;
 var timeLeft = 60;
 var index = 0;
 var score = 0;
-var submitButton = document.querySelector(".button"); 
+var submitButton = document.querySelector(".button");
 var highScoreButton = document.getElementById("high-score-button");
 var playAgainButton = document.getElementById("play-again-button");
 // variable declaration for answer list
@@ -24,14 +24,11 @@ var answerA = document.getElementById("answer-a");
 var answerB = document.getElementById("answer-b");
 var answerC = document.getElementById("answer-c");
 var answerD = document.getElementById("answer-d");
-var highScore1 = document.getElementById("high-score1");
-var highScore2 = document.getElementById("high-score2");
-var highScore3 = document.getElementById("high-score3");
 var testResults = document.getElementById("test-results");
 var userNameInput = localStorage.getItem("username");
 var displayScore = localStorage.getItem("userscore");
 var finalResults = {};
-var finalResultsJson = '';
+var finalResultsJson = "";
 
 // object for bank of questions
 var questionBank = [
@@ -99,7 +96,7 @@ function startQuiz() {
 }
 
 function startTimer() {
-    timerInterval = setInterval(function () {
+  timerInterval = setInterval(function () {
     timeLeft--;
     timer.textContent = timeLeft + " seconds remaining for the quiz.";
     if (timeLeft <= 0) {
@@ -135,8 +132,10 @@ function checkIfCorrectOrNot(event) {
     timeLeft = timeLeft - 5;
   }
   index++;
-  showQuestion();
-  if (index >= 4) {
+  // maxIndex = 4
+  if (index < questionBank.length) {
+    showQuestion();
+  } else {
     endGame();
   }
 }
@@ -146,58 +145,113 @@ function endGame() {
   quizScreen.style.display = "none";
   resultScreen.classList.add("hide");
   document.querySelector(".form-div").classList.remove("hide");
-  submitButton.addEventListener("click", function(event) {
-  event.preventDefault();
-  var nameInput = userName.value;
-  if (nameInput === "") {
-    alert("Error", "name cannot be blank");
-   } else {
-    localStorage.setItem("username", nameInput);
-    localStorage.setItem("userscore", score);
+  submitButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    var nameInput = userName.value;
+
+    if (nameInput === "") {
+      alert("Error", "name cannot be blank");
+      return;
     }
-    renderScores();
-  })
-  highScoreButton.addEventListener("click", function(event) {
+
+    var newScore = {
+      initials: nameInput,
+      result: score,
+    };
+    saveLocalStorage(newScore);
+
+  });
+  highScoreButton.addEventListener("click", function (event) {
     event.preventDefault();
-    highScoreDisplay();
-  })
-
+    showHighScoreScreen();
+  });
 }
 
-function renderScores() {
   
-  var userNameInput = localStorage.getItem("username");
-  var displayScore = localStorage.getItem("userscore");
-  testResults.textContent = userNameInput + ", your final score is " + displayScore;
-  playAgainButton.classList.remove("hide");
-  
-
-}
-
-function highScoreDisplay() {
-  document.querySelector(".form-div").classList.add("hide");
-  highScoreScreen.classList.remove("hide");
-  highScore1.classList.remove("hide");
-  highScore2.classList.remove("hide");
-  highScore3.classList.remove("hide");
-  finalResults = {
-    user: userNameInput,
-    testScore: displayScore
-  };
-  console.log(finalResults);
-  localStorage.setItem("finalResults", JSON.stringify(finalResults));
-  console.log(localStorage);
-  finalResultsJson = localStorage.getItem("finalResults");  
-  console.log(finalResultsJson);
-  highScore1.textContent = finalResults.user + " " + finalResults.testScore;
+  function showHighScoreScreen() {
+    document.querySelector(".form-div").classList.add("hide");
+    highScoreScreen.classList.remove("hide");
+    playAgainButton.classList.remove("hide");
+    playAgainButton.addEventListener("click", function (event) {
+      event.preventDefault();
+      document.location.reload();
+    });
+    loadScores()    
   // console.log(finalResultsJson);
-  playAgainButton.addEventListener("click", function(event) {
-    event.preventDefault();
-    document.location.reload();
-  })
+}
 
+function loadScores(){
+  var savedScores = JSON.parse(localStorage.getItem("highscores"));
+  if(savedScores.length === 0){
+    return
+  }
+  //sort the array here 
 
+  for (let i = 0; i < savedScores.length; i++) {
+    const element = savedScores[i];
+    console.log(element)
 
+    // innerHTML allows you create elements, add class, and set text in an easy to read format with template literals
+    highScoreScreen.innerHTML += `<div class="score-element">
+    <h2> ${element.initials} scored ${element.result}</h2>
+    </div>`
+   
+  //  this is the code to do the above line by line
+    // var newScoreElement = document.createElement("div")
+    // newScoreElement.classList.add("score-element")
+    // var scoreTextElement = document.createElement("h2")
+    // scoreTextElement.textContent = `${element.initials} scored ${element.result}`
+    // newScoreElement.append(scoreTextElement)
+    // highScoreScreen.append(newScoreElement)
+    
+  }
+}
+
+function saveLocalStorage(newScore) {
+  console.log(newScore);
+  var savedScores = JSON.parse(localStorage.getItem("highscores"));
+  console.log(savedScores);
+  // if(!savedScores) is checking is saved scores is falsy: https://www.freecodecamp.org/news/falsy-values-in-javascript/#:~:text=Description,)%2C%20and%20false%20of%20course.
+  if (savedScores === null) {
+    localStorage.setItem("highscores", JSON.stringify([newScore]));
+    return;
+  }
+  savedScores.push(newScore);
+  localStorage.setItem("highscores", JSON.stringify(savedScores));
 }
 
 
+// function sortHighScore() {
+//   if (score > scores[0].score) {
+//     scores[3] = scores[2];
+//     scores[2] = scores[1];
+//     scores[1] = scores[0];
+//     scores[0] = {initials, score};
+//     localStorage.setItem("userScore", JSON.stringify(scores))
+//     highscore()
+//   }
+//   else if (score > scores[1].score) {
+//     scores[3] = scores[2];
+//     scores[2] = scores[1];
+//     scores[1] = {initials, score};
+//     localStorage.setItem("userScore", JSON.stringify(scores))
+//     highscore()
+//   }
+//   else if (score > scores[2].score) {
+//     scores[3] = scores[2];
+//     scores[2] = {initials, score};
+//     localStorage.setItem("userScore", JSON.stringify(scores))
+//     highscore()
+//   }
+//   else if (score > scores[3].score) {
+//     scores[3] = {initials, score};
+//     localStorage.setItem("userScore", JSON.stringify(scores))
+//     highscore()
+//   }
+//   else {
+//     localStorage.setItem("userScore", JSON.stringify(scores))
+//     highscore()
+//   }
+// }, {once: true});
+
+// }
